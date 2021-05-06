@@ -1,17 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{643AF557-6B2F-466E-B423-0E2646E764B5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Falcon</RootNamespace>
-    <AssemblyName>Falcon</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFramework>net461</TargetFramework>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,189 +17,124 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <AssemblyTitle>Falcon</AssemblyTitle>
+    <Product>Falcon</Product>
+    <Copyright>Copyright ©  2017</Copyright>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0.0</InformationalVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>falcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Kaveret, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\dll\Kaveret.dll</HintPath>
-    </Reference>
-    <Reference Include="Renci.SshNet, Version=2016.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
-      <HintPath>..\packages\SSH.NET.2016.0.0\lib\net40\Renci.SshNet.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Windows.Forms.DataVisualization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    
+    <PackageReference Include="NLog" Version="4.7.9" />
+    <PackageReference Include="SSH.NET" Version="2016.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandLine\Arguments\Argument.cs" />
-    <Compile Include="CommandLine\Arguments\HelpArgument.cs" />
-    <Compile Include="CommandLine\Arguments\PingArgument.cs" />
-    <Compile Include="CommandLine\Arguments\SshArgument.cs" />
-    <Compile Include="CommandLine\Commands\ClearCommand.cs" />
-    <Compile Include="CommandLine\Commands\Command.cs" />
-    <Compile Include="CommandLine\Commands\HelpCommand.cs" />
-    <Compile Include="CommandLine\Commands\InvalidCommand.cs" />
-    <Compile Include="CommandLine\Commands\PingCommand.cs" />
-    <Compile Include="CommandLine\Commands\SshCommand.cs" />
-    <Compile Include="Forms\CommandLineForm.cs">
+    <Reference Include="Kaveret, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\dll\Kaveret.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Forms\CommandLineForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CommandLineForm.Designer.cs">
+    <Compile Update="Forms\CommandLineForm.Designer.cs">
       <DependentUpon>CommandLineForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PackageWizardForm.cs">
+    <Compile Update="Forms\PackageWizardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PackageWizardForm.Designer.cs">
+    <Compile Update="Forms\PackageWizardForm.Designer.cs">
       <DependentUpon>PackageWizardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PackageWizard\Package.cs" />
-    <Compile Include="Utils\AccesibleStack.cs" />
-    <Compile Include="Utils\DoubleStackHistoryBuffer.cs" />
-    <Compile Include="Utils\FileLogger.cs" />
-    <Compile Include="Utils\Logger.cs" />
-    <Compile Include="Utils\Ssh\Ssh.cs" />
-    <Compile Include="Graph\DataStream.cs" />
-    <Compile Include="CommandLine\CommandParser.cs" />
-    <Compile Include="Com\ConnectionsManager.cs" />
-    <Compile Include="Com\NetworkAdderss.cs" />
-    <Compile Include="Com\SerialCom.cs">
+    <Compile Update="Com\SerialCom.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Com\TCPClientCom.cs" />
-    <Compile Include="Com\TCPServerCom.cs" />
-    <Compile Include="Com\TCPSmartClient.cs" />
-    <Compile Include="Com\UDPServerCom.cs" />
-    <Compile Include="Com\UDPClientCom.cs" />
-    <Compile Include="Forms\AboutForm.cs">
+    <Compile Update="Forms\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AboutForm.Designer.cs">
+    <Compile Update="Forms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SeriesForm.cs">
+    <Compile Update="Forms\SeriesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SeriesForm.Designer.cs">
+    <Compile Update="Forms\SeriesForm.Designer.cs">
       <DependentUpon>SeriesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PlotForm.cs">
+    <Compile Update="Forms\PlotForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PlotForm.Designer.cs">
+    <Compile Update="Forms\PlotForm.Designer.cs">
       <DependentUpon>PlotForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainForm.cs">
+    <Compile Update="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
+    <Compile Update="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Graph\SeriesManager.cs" />
-    <Compile Include="Graph\ChartManager.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\BytesCounter.cs" />
-    <Compile Include="Utils\FileTools.cs" />
-    <Compile Include="Utils\MsgBox.cs" />
-    <Compile Include="Utils\Pinger.cs" />
-    <Compile Include="Utils\Ssh\SshCredentials.cs" />
-    <Compile Include="Utils\TextFormatter.cs" />
-    <Compile Include="Utils\TxtBoxSearch.cs" />
-    <EmbeddedResource Include="Forms\AboutForm.resx">
+    <EmbeddedResource Update="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CommandLineForm.resx">
+    <EmbeddedResource Update="Forms\CommandLineForm.resx">
       <DependentUpon>CommandLineForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PackageWizardForm.resx">
+    <EmbeddedResource Update="Forms\PackageWizardForm.resx">
       <DependentUpon>PackageWizardForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SeriesForm.resx">
+    <EmbeddedResource Update="Forms\SeriesForm.resx">
       <DependentUpon>SeriesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PlotForm.resx">
+    <EmbeddedResource Update="Forms\PlotForm.resx">
       <DependentUpon>PlotForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainForm.resx">
+    <EmbeddedResource Update="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Update="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="falcon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
+    <Compile Remove="Utils\Ssh.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

@@ -37,11 +37,13 @@ using System.Linq;
 using System.IO.Ports;
 using System.Management;
 using System.Threading;
+using NLog;
 
 namespace Falcon.Com
 {
     public class SerialCom : SerialPort
     {
+        private static ILogger Logger = LogManager.GetCurrentClassLogger();
         private bool connected_ = false;
         List<Action<byte[]>> subsList_ = new List<Action<byte[]>>();
 
@@ -71,6 +73,7 @@ namespace Falcon.Com
             }
             catch (Exception e)
             {
+                Logger.Error(e,"Error to open serial port");
                 string err = e.ToString();
                 connected_ = false;
             }

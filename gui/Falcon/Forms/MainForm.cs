@@ -492,7 +492,7 @@ namespace Falcon
             SaveSerialSettings();
             string detailedPort = serialComCmBx.Text;
             string portName = SerialCom.DetailedToSimplefiedPortName(detailedPort);
-
+            
             // selected port is not a serial port (doesn't contain 'COM')
             if (portName == null)
             {
